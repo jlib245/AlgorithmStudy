@@ -32,15 +32,11 @@ def solution(today, terms, privacies):
     xList = []
     for i in range(len(xStart)):
         xDate = xStart[i]
-        
-        if dateCompare(todayDate,xDate)== 1:
+        print(xDate, todayDate)
+        if xDate[0] < todayDate[0]:
+            xList.append(i+1)
+        elif xDate[0] == todayDate[0] and xDate[1] < todayDate[1]:
+            xList.append(i+1)
+        elif xDate[0] == todayDate[0] and xDate[1] == todayDate[1] and xDate[2] <= todayDate[2]:
             xList.append(i+1)
     return xList
-def dateCompare(today, X):
-    todayDay = today[2]+ (today[1] + (today[0] * 12)) * 28 
-    xDay = X[2]+ (X[1] + (X[0] * 12)) * 28
-    if xDay <= todayDay:
-        return 1
-    else:
-        return 0
-    
