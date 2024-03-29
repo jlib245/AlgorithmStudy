@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 lst = []
 for i in range(int(input())):
     lst.append(tuple(map(int, input().split())))
