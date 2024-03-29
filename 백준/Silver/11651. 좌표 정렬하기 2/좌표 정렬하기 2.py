@@ -1,3 +1,5 @@
+import sys
+input = sys.stdin.readline
 def f(a):
     res = [None]*2
     res[0] = a[1]
