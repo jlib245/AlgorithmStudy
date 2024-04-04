@@ -1,3 +1,6 @@
 import sys
-for i in range(int(input())):
-    print(sum(map(int,sys.stdin.readline().split())))
+N = int(input())
+input = sys.stdin.readline
+for i in range(N):
+    a, b = map(int, input().split())
+    print(a+b)
