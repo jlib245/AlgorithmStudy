@@ -1,6 +1,5 @@
 import sys
 input = sys.stdin.readline
-from collections import deque
 
 def newR(num):
     a = num // 1
@@ -9,7 +8,6 @@ def newR(num):
         return int(a + 1)
     else:
         return int(a)
-
 n = int(input())
 if n == 0:
     print('0')
@@ -18,9 +16,10 @@ else:
     for i in range(n):
         lst.append(int(input()))
     lst.sort()
-    DQ = deque(lst)
     dot = newR(n*0.15)
-    for i in range(dot):
-        DQ.popleft()
-        DQ.pop()
-    print(newR(sum(DQ)/len(DQ)))
+    sum_ = 0
+    cnt = 0
+    for i in range(dot, n-dot):
+        sum_ += lst[i]
+        cnt += 1
+    print(newR(sum_/cnt))
