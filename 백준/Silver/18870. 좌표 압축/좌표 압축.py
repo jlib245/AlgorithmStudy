@@ -2,10 +2,9 @@ import sys
 input = sys.stdin.readline
 N = int(input())
 X = list(map(int, input().split()))
-S = list(set(X))
-S.sort()
+S = sorted(set(X))
 D = dict()
 for i in range(len(S)):
-    D[str(S[i])] = i
+    D[S[i]] = i
 for i in X:
-    print(D[str(i)], end=' ')
+    print(D[i], end=' ')
