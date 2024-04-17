@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 K = int(input())
 
 lst = []
