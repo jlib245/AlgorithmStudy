@@ -1,7 +1,7 @@
 import sys
 sys.setrecursionlimit(int(1e6))
 
-def f(start : tuple, cnt : int, dir : tuple, n = tuple):
+def f(start : tuple, cnt : int, dir : tuple, n : tuple):
     r, c = start
     if not (0<=r<N and 0<=c<M and lst[r][c] == 0):
         return
