@@ -1,31 +1,27 @@
-def num(n):
+import sys
+input = sys.stdin.readline
+
+def check(n, min_):
     res = 0
     for i in range(K):
         res += have[i] // n
-    return res
-
-def search(min_, start, end):
-    mid = (start+end)//2
-
-    a = num(mid)
-
-    if a < min_:
-        ns = start
-        ne = mid - 1
+    if res < min_:
+        return False
     else:
-        ns = mid
-        ne = end
-        
-    if start == ns and end == ne:
-        if num(end) >= min_:
-            return end
-        else:
-            return start
+        return True
 
-    return search(min_, ns, ne)
+def search(lo, hi, min_):
+    if lo + 1 == hi:
+        return lo
+    mid = (lo + hi) // 2
+    if check(mid, min_) :
+        lo = mid
+    else :
+        hi = mid
+    return search(lo, hi, min_)
+
 
 K, N = map(int, input().split())
-
 have = []
 max_ = 0
 for i in range(K):
@@ -34,5 +30,5 @@ for i in range(K):
         max_ = n
     have.append(n)
 
-res = search(N, 1, max_)
+res = search(1, max_+1, N)
 print(res)
