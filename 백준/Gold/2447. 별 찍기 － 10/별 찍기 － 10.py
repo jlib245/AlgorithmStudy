@@ -17,5 +17,7 @@ w = [[' ']*N for i in range(N)]
 lst = [[1,1,1],[1,0,1],[1,1,1]]
 f(N, 1, (0,0))
 
-for i in w:
-    print(*i, sep='')
+for i in range(N):
+    for j in range(N):
+        print(w[i][j], end='')
+    print()
