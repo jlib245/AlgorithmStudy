@@ -1,8 +1,7 @@
 def f(n, star, start):
     r, c = start
-    if n == 0:
-        if star == 1:
-            w[r][c] = '*'
+    if n == 1 and star == 1:
+        w[r][c] = '*'
     elif star == 1:
         nxtn = n//3
         for i in range(3):
