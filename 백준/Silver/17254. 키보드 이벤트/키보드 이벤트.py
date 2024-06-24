@@ -2,16 +2,14 @@ import sys
 input = lambda : sys.stdin.readline().rstrip()
 
 N, M = map(int, input().split())
-lst = [[] for _ in range(1000001)]
+lst = []
 for _ in range(M):
     a,b,c = input().split()
     na, nb = int(a), int(b)
-    lst[nb].append((na,c))
-
+    lst.append((nb,na,c))
+lst.sort()
 res = ''
-for i in lst:
-    if i:
-        for trash, plus in sorted(i):
-            res += plus
+for t1, t2, c in lst:          
+    res += c
 
 print(res)
