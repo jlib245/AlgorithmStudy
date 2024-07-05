@@ -1,9 +1,17 @@
 N = int(input())
 M = int(input())
-A = input()
-P = ('IO'*(N+1))[:-1]
-result = 0
-for i in range(M):
-    if A[i] == 'I' and A[i:i+1+N*2] == P:
-        result += 1
-print(result)
+S = input()
+cnt = 0
+TF = False
+res = 0
+for i in range(1, M-1):
+    if S[i-1] == 'I' and S[i] == 'O' and S[i+1] == 'I':
+        TF = True
+        cnt += 1
+        if cnt >= N:
+            res += 1
+    elif TF:
+        TF = False
+    elif cnt :
+        cnt = 0
+print(res)
