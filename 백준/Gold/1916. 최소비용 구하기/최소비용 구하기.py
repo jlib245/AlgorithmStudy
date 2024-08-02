@@ -1,32 +1,33 @@
-import sys
-import heapq 
-
+import sys, heapq
 input = sys.stdin.readline
 
-n = int(input())
-m = int(input())
-graph = [[] for _ in range(n+1)]
+INF = 1e8
 
-for _ in range(m):
-    a, b, cost = map(int, input().split())
-    graph[a].append([b, cost])
-        
-start, end = map(int, input().split())
-costs = [1e9 for _ in range(n+1)]
-heap = []
-costs[start] = 0
-heapq.heappush(heap, [0, start])
-    
-while heap:
-    c, x = heapq.heappop(heap)
-    if costs[x] < c:
-        continue
-    for nx, dc in graph[x]:
-        nc = c + dc
-        if nc >= costs[nx]:
+def dijkstra(start, end):
+    H = [(0, start)]
+    cost = [INF]*(N+1)
+    cost[start] = 0
+    while H :
+        c, x = heapq.heappop(H)
+        if x == end :
+            return c
+        if c > cost[x]:
             continue
-        
-        costs[nx] = nc
-        heapq.heappush(heap, (nc, nx))
-        
-print(costs[end])
+        for nx, dc in edge[x] :
+            nc = c + dc
+            if cost[nx] > nc :
+                cost[nx] = nc
+                heapq.heappush(H, (nc, nx))
+
+N = int(input())
+M = int(input())
+
+edge = [[] for _ in range(N+1)]
+for i in range(M):
+    a, b, c = map(int, input().split())
+    edge[a].append((b, c))
+
+start, end = map(int, input().split())
+
+ans = dijkstra(start, end)
+print(ans)
