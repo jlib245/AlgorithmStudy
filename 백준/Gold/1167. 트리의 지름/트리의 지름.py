@@ -1,7 +1,7 @@
 from collections import deque
 import sys
 input = sys.stdin.readline
-sys.setrecursionlimit(10**5)
+sys.setrecursionlimit((10**5)*5)
 
 def dfs(tup:tuple):
     node, d = tup
