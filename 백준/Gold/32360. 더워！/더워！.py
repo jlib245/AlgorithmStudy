@@ -9,10 +9,11 @@ def bfs(home) :
     B = [[100]*M for _ in range(N)]
     while Q :
         r, c, d, b = Q.popleft()
-        if lst[r][c] == 'H' and 0 < b:
+        if lst[r][c] == 'H' :
             nb = max(0, b-K)
-            B[r][c] = nb
-            Q.append((r, c, d+1, nb))
+            if B[r][c] > nb :
+                B[r][c] = nb
+                Q.append((r, c, d+1, nb))
         for i in range(4):
             nr = r + dr[i]
             nc = c + dc[i]
