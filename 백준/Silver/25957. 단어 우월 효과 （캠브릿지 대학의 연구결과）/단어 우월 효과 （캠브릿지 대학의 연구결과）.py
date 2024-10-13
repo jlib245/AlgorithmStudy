@@ -2,10 +2,7 @@ import sys
 input = lambda : sys.stdin.readline().rstrip()
 
 def check(w):
-    alph = [0]*26
-    for a in w :
-        alph[ord(a)-97] += 1
-    return tuple(alph)
+    return ''.join(sorted(w))
 
 N = int(input())
 dic = {}
