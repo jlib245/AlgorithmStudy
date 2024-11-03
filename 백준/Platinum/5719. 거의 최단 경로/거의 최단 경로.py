@@ -4,9 +4,9 @@ from collections import deque
 
 def dijkstra(S : int , D: int, second : int):
     H = [(0, S)]
-    distance = [(INF, list())]*N
-    distance[S] = (0, list())
-
+    distance = [INF]*N
+    distance[S] = 0
+    prev = [[] for _ in range(N)]
     while H :
         d, x = heapq.heappop(H)
 
@@ -16,7 +16,7 @@ def dijkstra(S : int , D: int, second : int):
                 visit = [False]*N
                 while Q :
                     x = Q.popleft()
-                    for nx, EN in distance[x][1]:
+                    for nx, EN in prev[x]:
                         edgeVisit[EN] = True
                         if not visit[nx]:
                             visit[nx] = True
@@ -28,11 +28,12 @@ def dijkstra(S : int , D: int, second : int):
                 continue
 
             nd = d + dd
-            if distance[nx][0] > nd :
-                distance[nx] = (nd, [(x, EN)])
+            if distance[nx] > nd :
+                distance[nx] = nd
+                prev[nx] = [(x, EN)]
                 heapq.heappush(H, (nd, nx))
-            elif distance[nx][0] == nd :
-                distance[nx][1].append((x, EN))
+            elif distance[nx] == nd :
+                prev[nx].append((x, EN))
     return -1
 
 ans = []
