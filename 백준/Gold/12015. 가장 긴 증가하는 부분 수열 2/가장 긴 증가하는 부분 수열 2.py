@@ -7,18 +7,15 @@ def check(x : int, li : int) -> bool:
     return False
 
 def binarySearch(lo : int, hi : int, x : int)-> None:
-    if lo + 1 == hi :
-        LIS[hi] = x
-        return
-    
-    mid = (lo+hi)//2
-    
-    if check(x, mid):
-        hi = mid
-    else :
-        lo = mid
-
-    binarySearch(lo, hi, x)
+    while lo + 1 != hi :
+        mid = (lo+hi)//2
+        
+        if check(x, mid):
+            hi = mid
+        else :
+            lo = mid
+            
+    LIS[hi] = x
     return
 
 N = int(input())
