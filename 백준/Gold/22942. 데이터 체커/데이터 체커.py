@@ -1,15 +1,6 @@
 import sys
 input = sys.stdin.readline
 
-N = int(input())
-lst = list()
-for i in range(N):
-    x, r = map(int, input().split())
-    lst.append((x-r, x, r, i))
-    lst.append((x+r, x, r, i))
-
-lst.sort()
-
 def check(a : tuple, b : tuple) -> bool:
     if a[3] == b[3] :
         return True
@@ -21,10 +12,18 @@ def check(a : tuple, b : tuple) -> bool:
     if abs(r1-r2) <= d <= r1 + r2 :
         return False
     return True
+
+N = int(input())
+lst = list()
+for i in range(N):
+    x, r = map(int, input().split())
+    lst.append((x-r, x, r, i))
+    lst.append((x+r, x, r, i))
+
+lst.sort()
     
-    
-for i in range(1, 2*N-1):
-    if not (check(lst[i-1], lst[i]) and check(lst[i], lst[i+1])) :
+for i in range(2*N-1):
+    if not (check(lst[i], lst[i+1])) :
         print("NO")
         break
 else :
