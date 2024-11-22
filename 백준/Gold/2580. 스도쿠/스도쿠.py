@@ -1,59 +1,51 @@
-#스도쿠
-def printf():
-    for i in d:
-        print(*i)
+import sys
+input = sys.stdin.readline
 
-def init():
-    global cnt
-    for i in range(9):
-        for j in range(9):
-            t = d[i][j]
-            if t:
-                cnt -= 1
-                s = sq(i,j)
-                ver[i][t] = True
-                hor[j][t] = True
-                squ[s][t] = True
+lst = [list(map(int, input().split())) for _ in range(9)]
 
-def nloc(x,y):
-    nx = x
-    ny = y + 1
-    if ny == 9:
-        nx += 1
-        ny = 0
-    return (nx,ny)
+ans = []
 
-def dfs(loc):
-    global cnt
-    x,y = loc
-    nx,ny = nloc(*loc)
-    if d[x][y]:
-        return dfs((nx,ny))
+def bt_pass(r, c) :
+    if 0 <= c < 8 :
+        bt(r, c+1)
+    elif 0 <= r < 8 :
+        bt(r+1, 0)
+    else :
+        for row in lst :
+            print(*row, sep=' ')
+        exit()
 
-    s = sq(x,y)
-    for t in range(1,10):
-        if not ver[x][t] and not hor[y][t] and not squ[s][t]:
-            ver[x][t] = True
-            hor[y][t] = True
-            squ[s][t] = True
-            d[x][y] = t
-            cnt -= 1
-            if not cnt:
-                printf()
-                exit()
-            dfs((nx,ny))
-            cnt += 1
-            d[x][y] = 0
-            ver[x][t] = False
-            hor[y][t] = False
-            squ[s][t] = False
+def bt(r, c) :
+    if lst[r][c] != 0 :
+        bt_pass(r, c)
+        return
 
-ver = [[False]*10 for _ in range(10)]
-hor = [[False]*10 for _ in range(10)]
-squ = [[False]*10 for _ in range(10)]
-sq = lambda x,y:(x//3)*3 + y//3
+    num = set(range(1,10))
+    for i in range(9) :
+        num.discard(lst[r][i])
+        num.discard(lst[i][c])
+    for i in range(3) :
+        for j in range(3) :
+            num.discard(lst[r//3*3+i][c//3*3+j])
+    
+    for x in num :
+        lst[r][c] = x
+        bt_pass(r, c)
+        lst[r][c] = 0
+    return
 
-d = [list(map(int,input().split())) for _ in range(9)]
-cnt = 81
-init()
-dfs((0,0))
+bt(0, 0)
+
+
+
+'''
+0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0
+'''
